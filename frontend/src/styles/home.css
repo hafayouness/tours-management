@@ -1,0 +1,104 @@
+.hero__subtitle img {
+  width: 2.3rem;
+  height: 2.3rem;
+}
+
+h1 {
+  font-size: 3.2rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  color: var(--heading-color);
+}
+.highligth {
+  color: var(--secondary-color);
+}
+p {
+  font-size: 1.1rem;
+  line-height: 2rem;
+  color: var(--heading-color);
+}
+.hero__img__box img,
+.hero__img__box video {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 1px solid var(--secondary-color);
+}
+.hero-centent {
+  padding-top: 3.5rem;
+}
+.hero__img__box {
+  padding-top: 2rem;
+}
+.service_substitle {
+  font-size: 2.3rem;
+  font-weight: 500;
+  color: #ee6e6e;
+  font-family: var(--subtitle-font-name);
+}
+.service_title {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.featured__tour__title {
+  font-size: 2.3rem;
+  font-weight: 500;
+}
+
+.experience_content h2 {
+  font-size: 2.3rem;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+.experience_content p {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.5rem;
+}
+.counter-wrapper {
+  margin-top: 2.5rem;
+}
+
+.counter_box span {
+  width: 70px;
+  height: 70px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 10px 5px 10px 5px;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.exprience__img {
+  width: 90%;
+  object-fit: cover;
+}
+
+.counter_box h6 {
+  font-size: 1.1rem;
+  margin-top: 0.7rem;
+  color: var(--text-color);
+}
+.gallery_title {
+  font-size: 2, 3rem;
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+}
+.gallery-image:hover {
+  transform: scale(1.05); /* Échelle de 105% */
+  transition: all 0.3s ease; /* Transition de toutes les propriétés avec une durée de 0.3s et une fonction de transition "ease" */
+  height: 100%;
+}
+
+.fans_title {
+  font-size: 2.3rem;
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+}

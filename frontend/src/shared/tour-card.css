@@ -1,0 +1,77 @@
+/* .tours_card {
+
+} */
+.tour-img img {
+  width: 100%;
+  border-radius: 5px 5px 0px 0px;
+}
+.card {
+  border: none;
+  box-shadow: rbga(0, 0, 0, 0.15) 0px 18px 50px -10px;
+}
+.tour-img {
+  position: relative;
+}
+.tour-img span {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: max-content;
+  height: max-content;
+  z-index: 10;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px 0 0 0;
+}
+.card-top span .icon {
+  color: var(--secondary-color);
+}
+.tour__location {
+  color: var(--heading-color);
+  font-weight: 500;
+}
+.tour__rating {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+.tour__location .icon,
+.tour__rating .icon {
+  font-size: 1rem;
+}
+.tour-title {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.tour-title a {
+  text-decoration: none;
+  color: var(--heading-color);
+  transition: 0.3s;
+}
+.tour-title a:hover {
+  color: var(--secondary-color);
+}
+.title {
+  font-size: 1rem;
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+.title span {
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.booking-btn {
+  background-color: var(--secondary-color) !important;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem !important;
+}
+.booking-btn a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #fff;
+}
+.booking-btn a:hover {
+  color: #fff;
+}

@@ -1,0 +1,79 @@
+.tour_content img {
+  width: 100%;
+  border: 0.8rem;
+  margin-bottom: 2.5rem;
+}
+
+span .icon {
+  margin-bottom: -2px;
+}
+.tour__location {
+  color: var(--text-color);
+}
+.tour_info,
+.tour_reviews {
+  border: 1px solid rgba(229, 231, 235);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+.icon {
+  color: var(--heading-color);
+}
+
+.tour_info h2 {
+  font-size: 1.6rem;
+}
+.tour__adress {
+  color: var(--text-color);
+}
+.tour_info p {
+  font-family: var(--font-name);
+}
+
+.reviews_input {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--secondary-color);
+  padding: 6px;
+  border-radius: 50px;
+}
+.reviews_input input {
+  outline: none;
+  border: none;
+  font-size: 1.1rem;
+  margin-left: 1rem;
+}
+.rating-group {
+  color: var(--secondary-color);
+}
+.review_item {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+.review_item img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50px;
+  object-fit: cover;
+}
+.review_info p {
+  margin-top: -9px;
+  color: var(--text-color);
+}
+.review_item h6 {
+  color: var(--heading-color);
+  margin-top: -3px;
+}
+.review-star .star {
+  color: var(--secondary-color) !important;
+}
+.review-star span {
+  color: var(--heading-color);
+  font-weight: 600;
+}

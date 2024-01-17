@@ -1,0 +1,63 @@
+.boocking {
+  padding: 2rem;
+  border: 1px solid rgba(229, 231, 235);
+  position: sticky;
+  top: 80px;
+}
+.boocking__top h3 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.boocking__top h3 span {
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+.boocking__top {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgb(229, 231, 235);
+}
+.boocking-information {
+  padding-top: 2rem;
+}
+.boocking-information h5 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+.boocking__info-form {
+  padding: 1rem;
+  border: 1px solid rgba(229, 231, 235);
+}
+.boocking__info-form input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: var(--text-color);
+  border: none;
+  border-bottom: 1px solid rgb(229, 231, 235);
+}
+
+.boocking__info-form input:focus {
+  outline: none;
+}
+.boocking__button {
+  margin-top: 1rem;
+}
+
+.boocking__button li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.boocking__button li h5,
+.boocking__button li span {
+  font-size: 1rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+.total h5,
+.total span {
+  color: var(--heading-color) !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+}
