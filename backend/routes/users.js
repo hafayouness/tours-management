@@ -8,20 +8,21 @@ import {
 } from "../controller/userController.js";
 
 const router = express.Router();
+import { verifyUser, verifyAdmin } from "../utile/VerifyToken.js";
 
 // getAllUSER
-router.get("/", getAllUser);
+router.get("/", verifyAdmin, getAllUser);
 
 // getSinglUSER
-router.get("/:id", getSingleUser);
+router.get("/:id", verifyUser, getSingleUser);
 
 // createdUSER
 router.post("/", createUser);
 
 // update user
-router.put("/:id", updateUser);
+router.put("/:id", verifyUser, updateUser);
 
 // delete user
-router.delete("/:id", deleteUser);
+router.delete("/:id", verifyUser, deleteUser);
 
 export default router;

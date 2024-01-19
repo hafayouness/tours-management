@@ -32,7 +32,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   const email = req.body.email;
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).maxTimeMS(20000);
 
     // if user doesn't exist
     if (!user) {
@@ -41,7 +41,7 @@ export const login = async (req, res) => {
         .json({ success: false, message: "user not found" });
     }
     // if user is exist check password or compare password
-    const checkCorrectPassword = bcrypt.compare(
+    const checkCorrectPassword = await bcrypt.compare(
       req.body.password,
       user.password
     );
@@ -52,5 +52,31 @@ export const login = async (req, res) => {
         .json({ success: false, message: "invalid email or password" });
     }
     const { password, role, ...rest } = user._doc;
-  } catch (err) {}
+
+    // create jwt token
+    const token = jwt.sign(
+      { id: user._id, role: user.role },
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: "15d" }
+    );
+
+    // set token to in the browser cokkies  and send the response to the clients
+    res
+      .cookie("accessToken", token, {
+        httpOnly: true,
+        expires: token.expiresIn,
+      })
+      .status(200)
+      .json({
+        token,
+        data: { ...rest },
+        role,
+      });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "failed to login ",
+      error: err.message,
+    });
+  }
 };

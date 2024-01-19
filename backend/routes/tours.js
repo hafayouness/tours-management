@@ -11,7 +11,7 @@ import {
 } from "../controller/tourController.js";
 
 const router = express.Router();
-
+import { verifyAdmin } from "../utile/VerifyToken.js";
 // getAlltour
 router.get("/", getAllTour);
 // get by search
@@ -23,12 +23,12 @@ router.get("/search/getCountsTour", getCountsTour);
 router.get("/:id", getSingTour);
 
 // createdtour
-router.post("/", createTour);
+router.post("/", verifyAdmin, createTour);
 
 // update tour
-router.put("/:id", updateTour);
+router.put("/:id", verifyAdmin, updateTour);
 
 // delete tour
-router.delete("/:id", deleteTour);
+router.delete("/:id", verifyAdmin, deleteTour);
 
 export default router;

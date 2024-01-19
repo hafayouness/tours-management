@@ -11,14 +11,18 @@ import routerAuth from "./routes/auth.js";
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
+const corsOptions = {
+  origin: true,
+  credentials: true,
+};
 
 // middlewre
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
-app.use("/tours", routerTour);
-app.use("/users", routerUser);
-app.use("/auth", routerAuth);
+app.use("/api/v1/tours", routerTour);
+app.use("/api/v1/users", routerUser);
+app.use("/api/v1/auth", routerAuth);
 //connect database
 
 const connect = async () => {
