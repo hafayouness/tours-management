@@ -17,7 +17,7 @@ router.get("/", verifyAdmin, getAllUser);
 router.get("/:id", verifyUser, getSingleUser);
 
 // createdUSER
-router.post("/", createUser);
+router.post("/", verifyUser, createUser);
 
 // update user
 router.put("/:id", verifyUser, updateUser);

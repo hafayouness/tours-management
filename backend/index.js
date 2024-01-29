@@ -7,6 +7,8 @@ import cookieParser from "cookie-parser";
 import routerUser from "./routes/users.js";
 import routerTour from "./routes/tours.js";
 import routerAuth from "./routes/auth.js";
+import routerReview from "./routes/reviews.js";
+import routerBooking from "./routes/bookings.js";
 
 dotenv.config();
 const app = express();
@@ -23,6 +25,8 @@ app.use(cookieParser());
 app.use("/api/v1/tours", routerTour);
 app.use("/api/v1/users", routerUser);
 app.use("/api/v1/auth", routerAuth);
+app.use("/api/v1/review", routerReview);
+app.use("/api/v1/booking", routerBooking);
 //connect database
 
 const connect = async () => {
