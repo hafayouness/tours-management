@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./tour-card.css";
 import calculateAvergRating from "../utile/AvergRating";
 function TourCard({ tour }) {
-  const { id, title, city, price, photo, reviews, featured } = tour;
+  const { _id, title, city, price, reviews, featured, photo } = tour;
 
   const { totalRating, avgRating } = calculateAvergRating(reviews);
 
@@ -14,7 +14,7 @@ function TourCard({ tour }) {
     <div className="tours_card">
       <Card>
         <div className="tour-img">
-          <img src={photo} alt="" />
+          <img src={photo} alt="Tour Photo" />
           {featured && <span>Featured</span>}
         </div>
         <CardBody>
@@ -34,14 +34,14 @@ function TourCard({ tour }) {
             </span>
           </div>
           <h5 className="tour-title">
-            <Link to={`/tours/${id}`}>{title}</Link>
+            <Link to={`/tours/${_id}`}>{title}</Link>
           </h5>
           <div className="d-flex align-items-center justify-content-between gap-2">
             <h5 className="title mt-2">
               ${price} <span>/per person</span>
             </h5>
             <button className="btn booking-btn">
-              <Link to={`/tours/${id}`} className="book-link">
+              <Link to={`/tours/${_id}`} className="book-link">
                 Book Now
               </Link>
             </button>

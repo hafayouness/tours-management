@@ -5,19 +5,36 @@ import { BiSearch } from "react-icons/bi";
 import { FiMapPin } from "react-icons/fi";
 import { BsPeople } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
+import { BASE_URL } from "../utile/config";
+import { useNavigate } from "react-router-dom";
 function SearchBar() {
   const locationRef = useRef("");
   const distanceRef = useRef(0);
   const maxGroupRef = useRef(0);
 
-  const submitHandler = () => {
+  const navigate = useNavigate();
+
+  const submitHandler = async () => {
     const location = locationRef.current.value;
     const distance = distanceRef.current.value;
-    const maxGroup = maxGroupRef.current.value;
+    const maxGroupSize = maxGroupRef.current.value;
 
-    if (location === "" || distance === "" || maxGroup === "") {
+    if (location === "" || distance === "" || maxGroupSize === "") {
       alert("Please fill all the fields");
     }
+
+    const res = await fetch(
+      `${BASE_URL}/tours/search/getTourSearchBy?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`
+    );
+    if (!res.ok) alert("something went wrong");
+    console.log(res);
+    const result = await res.json();
+    console.log(result);
+
+    navigate(
+      `/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`,
+      { state: result.data }
+    );
   };
   return (
     <Col lg="12">

@@ -21,7 +21,7 @@ function Header() {
       display: "Tours",
     },
   ];
-  const headerRef = useRef();
+  const headerRef = useRef(null);
   const stickyHeaderFun = () => {
     window.addEventListener("scroll", () => {
       if (
