@@ -6,18 +6,18 @@ import useFetch from "./../../hooks/useFetch";
 import { BASE_URL } from "./../../utile/config";
 function FeaturedList() {
   const {
-    data: featuredTours,
+    data: featureTours,
     error,
     laoding,
   } = useFetch(`${BASE_URL}/tours/search/getFeatureTour`);
-  console.log(featuredTours);
+  console.log(featureTours);
   return (
     <>
       {laoding && <h4 className="text-center loading">Loading...</h4>}
       {error && <h4 className="text-center loading">{error}</h4>}
       {!laoding &&
         !error &&
-        featuredTours?.map((tour) => (
+        featureTours?.map((tour) => (
           <Col lg="3" className="mb-5 " key={tour._id}>
             <TourCard tour={tour} />
           </Col>

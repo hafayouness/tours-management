@@ -4,7 +4,7 @@ import "../styles/tour.css";
 import TourCard from "../shared/TourCard";
 import Newsletter from "../shared/Newsletter";
 import SearchBar from "../shared/SearchBar";
-import TourData from "../assets/data/tours";
+// import TourData from "../assets/data/tours";
 import { Container, Row, Col } from "reactstrap";
 
 import useFetch from "../hooks/useFetch";
@@ -14,14 +14,19 @@ function Tours() {
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(0);
 
-  const { data: tours, laoding, error } = useFetch(`${BASE_URL}/tours`);
+  const {
+    data: tours,
+    laoding,
+    error,
+  } = useFetch(`${BASE_URL}/tours?page=${page}`);
   const { data: tourCount } = useFetch(
     `${BASE_URL}/tours/search/getCountsTour`
   );
   useEffect(() => {
-    const pages = Math.ceil(tourCount / 4);
+    const pages = Math.ceil(tourCount / 8);
     setPageCount(pages);
-  }, [page, tourCount]);
+    window.scrollTo(0, 0);
+  }, [page, tourCount, tours]);
   return (
     <>
       <CommunSection title={"All tours"} />

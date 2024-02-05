@@ -28,7 +28,7 @@ function Home() {
                 </div>
                 <h1>
                   traveling opens the door to Creating
-                  <span className="highligth">memories</span>
+                  <span className="highligth"> Memories</span>
                 </h1>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and

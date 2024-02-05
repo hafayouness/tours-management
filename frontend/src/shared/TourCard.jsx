@@ -6,15 +6,16 @@ import { Link } from "react-router-dom";
 import "./tour-card.css";
 import calculateAvergRating from "../utile/AvergRating";
 function TourCard({ tour }) {
-  const { _id, title, city, price, reviews, featured, photo } = tour;
-
+  const { _id, title, city, price, reviews, featured } = tour;
+  const { photo } = tour;
   const { totalRating, avgRating } = calculateAvergRating(reviews);
 
   return (
     <div className="tours_card">
       <Card>
         <div className="tour-img">
-          <img src={photo} alt="Tour Photo" />
+          <img src={photo} alt="" />
+
           {featured && <span>Featured</span>}
         </div>
         <CardBody>
