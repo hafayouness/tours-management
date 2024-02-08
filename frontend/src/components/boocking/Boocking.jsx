@@ -1,34 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./boocking.css";
 import { Form, ListGroup, FormGroup, ListGroupItem, Button } from "reactstrap";
 import { FaStar } from "react-icons/fa6";
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import Newsletter from "../../shared/Newsletter";
+// import Newsletter from "../../shared/Newsletter";
+import { AuthContext } from "./../../context/AuthContext";
+import { BASE_URL } from "./../../utile/config";
 
 function Boocking({ tour, avgRating }) {
   const navigate = useNavigate();
-  const { price, reviews } = tour;
-  const [credentials, setCredentials] = useState({
-    userId: "01",
-    userEmail: "exemple@gmail.dev",
+  const { user } = useContext(AuthContext);
+  const { price, reviews, title } = tour;
+  const [booking, setBooking] = useState({
+    userId: user && user._id,
+    userEmail: user && user.email,
+    tourName: title,
     fullName: "",
     phone: "",
     bookAt: "",
-    guesSize: 1,
+    guestSize: 1,
   });
   const handleChange = (e) => {
     // const { name, value } = e.target;
-    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    setBooking((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
+    console.log(booking);
 
-    navigate("/thank-you");
+    try {
+      if (!user || user === undefined || user === null) {
+        return alert("Please sign up ");
+      }
+      const res = await fetch(`${BASE_URL}/booking`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(booking),
+      });
+      const result = await res.json();
+      console.log(res);
+      console.log(result);
+      if (!res.ok) {
+        return alert(result.message);
+      }
+      navigate("/thank-you");
+    } catch (err) {
+      alert(err.message);
+    }
   };
   const serviveFee = 10;
   const totalAmount =
-    Number(price) * Number(credentials.guesSize) + Number(serviveFee);
+    Number(price) * Number(booking.guestSize) + Number(serviveFee);
   return (
     <div className="boocking">
       <div className="boocking__top d-flex align-items-center  justify-content-between">

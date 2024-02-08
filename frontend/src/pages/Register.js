@@ -5,7 +5,7 @@ import registerImg from "../assets/images/register.png";
 import userIcon from "../assets/images/user.png";
 import { Link, useNavigate } from "react-router-dom";
 
-import { AuthContext } from "./../context/AuthContext";
+import { AuthContext } from "./../context/AuthContext.js";
 import { BASE_URL } from "../utile/config";
 function Register() {
   const [credentials, setCredentials] = useState({

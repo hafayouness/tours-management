@@ -10,7 +10,7 @@ function FeaturedList() {
     error,
     laoding,
   } = useFetch(`${BASE_URL}/tours/search/getFeatureTour`);
-  console.log(featureTours);
+
   return (
     <>
       {laoding && <h4 className="text-center loading">Loading...</h4>}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import { Container, Row, Col, ListGroup } from "reactstrap";
 import "../styles/tour-details.css";
 
@@ -15,11 +15,12 @@ import Boocking from "../components/boocking/Boocking";
 import Newsletter from "../shared/Newsletter";
 import useFetch from "./../hooks/useFetch";
 import { BASE_URL } from "./../utile/config";
-
+import { AuthContext } from "./../context/AuthContext";
 function TourDetails() {
   const { id } = useParams();
   // fetch data from database
   const { data: tour, laoding, error } = useFetch(`${BASE_URL}/tours/${id}`);
+  const { user } = useContext(AuthContext);
 
   const {
     photo,
@@ -32,19 +33,43 @@ function TourDetails() {
     title,
     address,
   } = tour;
-  console.log("photo", photo);
 
   const { totalRating, avgRating } = calculateAvergRating(reviews);
   const options = { day: "numeric", month: "long", year: "numeric" };
   const reviewMsgRef = useRef();
   const [tourRating, setTourRating] = useState(null);
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const reviewRatingText = reviewMsgRef.current.value;
-    console.log(reviewRatingText);
-    alert("please sign up ");
+    const reviewText = reviewMsgRef.current.value;
+    console.log(reviewText);
 
-    // later call with api
+    try {
+      if (!user || user === undefined || user === null) {
+        alert("please sign up ");
+      }
+
+      const reviewObj = {
+        username: user?.username,
+        reviewText,
+        rating: tourRating,
+      };
+
+      const res = await fetch(`${BASE_URL}/review/${id}`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(reviewObj),
+      });
+      const result = await res.json();
+      if (!res.ok) {
+        return alert(result.message);
+      }
+      alert("review submitted");
+    } catch (err) {
+      alert(err.message);
+    }
   };
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -61,7 +86,7 @@ function TourDetails() {
             <Row>
               <Col lg="8">
                 <div className="tour_content">
-                  <img src={photo} alt="Tour Photo" />
+                  <img src={photo} alt="" />
                   <div className="tour_info">
                     <h2>{title}</h2>
                     <div className="d-flex align-items-center gap-5 ">
@@ -147,14 +172,14 @@ function TourDetails() {
                         </button>
                       </div>
                     </form>
-                    <ListGroup className="user_reviews">
+                    {/* <ListGroup className="user_reviews">
                       {reviews?.map((review) => {
                         <div className="review_item">
                           <img src={avatar} alt="" />
                           <div className="w-100">
                             <div className="d-flex align-items-center justify-content-between review-star">
                               <div className="review_info">
-                                <h6>youness</h6>
+                                <h6>{review.username}</h6>
                                 <p>
                                   {new Date("01-01-2024").toLocaleDateString(
                                     "en-US",
@@ -163,12 +188,37 @@ function TourDetails() {
                                 </p>
                               </div>
                               <span className="d-flex align-items-center gap-1 ">
-                                5 <FaStar className="star" />
+                                {review.rating} <FaStar className="star" />
                               </span>
                             </div>
-                            <h6>Amazing tour.</h6>
+                            <h6>{review.reviewText}</h6>
                           </div>
                         </div>;
+                      })}
+                    </ListGroup> */}
+                    <ListGroup className="user_reviews">
+                      {reviews?.map((review) => {
+                        return (
+                          <div className="review_item">
+                            <img src={avatar} alt="" />
+                            <div className="w-100">
+                              <div className="d-flex align-items-center justify-content-between review-star">
+                                <div className="review_info">
+                                  <h6>{review?.username}</h6>
+                                  <p>
+                                    {new Date(
+                                      review.createdAt
+                                    ).toLocaleDateString("en-US", options)}
+                                  </p>
+                                </div>
+                                <span className="d-flex align-items-center gap-1 ">
+                                  {review.rating} <FaStar className="star" />
+                                </span>
+                              </div>
+                              <h6> {review.reviewText}.</h6>
+                            </div>
+                          </div>
+                        );
                       })}
                     </ListGroup>
                   </div>
