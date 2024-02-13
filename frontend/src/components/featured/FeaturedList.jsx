@@ -1,15 +1,16 @@
 import React from "react";
 import TourCard from "../../shared/TourCard";
 import { Col } from "reactstrap";
-// import tourData from "./../../assets/data/tours";
+import tourData from "./../../assets/data/tours";
 import useFetch from "./../../hooks/useFetch";
 import { BASE_URL } from "./../../utile/config";
 function FeaturedList() {
   const {
-    data: featureTours,
+    data: featuredTours,
     error,
     laoding,
   } = useFetch(`${BASE_URL}/tours/search/getFeatureTour`);
+  console.log(featuredTours);
 
   return (
     <>
@@ -17,8 +18,8 @@ function FeaturedList() {
       {error && <h4 className="text-center loading">{error}</h4>}
       {!laoding &&
         !error &&
-        featureTours?.map((tour) => (
-          <Col lg="3" className="mb-5 " key={tour._id}>
+        featuredTours?.map((tour) => (
+          <Col lg="3" md="6" sm="6" className="mb-4 " key={tour._id}>
             <TourCard tour={tour} />
           </Col>
         ))}

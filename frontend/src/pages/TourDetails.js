@@ -104,7 +104,7 @@ function TourDetails() {
                         {address}
                       </span>
                     </div>
-                    <div className="d-flex align-items-center gap-4 mt-2 mb-4">
+                    <div className="d-flex align-items-center gap-4 mt-2 mb-4 tour-extra_details">
                       <span className="tour__location d-flex align-items-center gap-1">
                         <HiOutlineMapPin className="icon" />
                         {city}

@@ -19,6 +19,7 @@ const corsOptions = {
 };
 
 // middlewre
+app.use(express.static("public"));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());

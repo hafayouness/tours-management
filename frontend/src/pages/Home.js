@@ -45,7 +45,7 @@ function Home() {
               </div>
             </Col>
             <Col lg="2">
-              <div className="hero__img__box mt-4">
+              <div className="hero__img__box hero__video mt-4">
                 <video src={heroVideo} alt="" controls />
               </div>
             </Col>

@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import "./tour-card.css";
 import calculateAvergRating from "../utile/AvergRating";
 function TourCard({ tour }) {
-  const { _id, title, city, price, reviews, featured } = tour;
-  const { photo } = tour;
+  const { _id, title, city, price, reviews, featured, photo } = tour;
+  console.log(photo);
+
   const { totalRating, avgRating } = calculateAvergRating(reviews);
 
   return (

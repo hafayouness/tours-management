@@ -24,6 +24,7 @@ function Header() {
   ];
   const { user, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
+  const menuRef = useRef(null);
   const headerRef = useRef(null);
   const stickyHeaderFun = () => {
     window.addEventListener("scroll", () => {
@@ -41,7 +42,7 @@ function Header() {
     stickyHeaderFun();
     return document.removeEventListener("scroll", stickyHeaderFun);
   });
-
+  const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
   const logout = () => {
     dispatch({ type: "LOGOUT" });
     navigate("/");
@@ -58,7 +59,7 @@ function Header() {
 
             {/* ========= logo end  ======== */}
 
-            <div className="navigation ">
+            <div className="navigation" ref={menuRef} onClick={toggleMenu}>
               <ul className="menu d-flex align-items-center gap-5">
                 {nav__links.map((item, index) => (
                   <li className="nav__item" key={index}>
@@ -95,7 +96,7 @@ function Header() {
                   </>
                 )}
               </div>
-              <span className="mobile_menu">
+              <span className="mobile_menu" onClick={toggleMenu}>
                 <SlMenu />
               </span>
             </div>
